@@ -10,7 +10,7 @@ A simple XSS Cookie Stealer. The python application stores the creceived cookies
 
 ### Get the script
 ```
-git clone [https://github.com/eMVee-NL/XSS-Keylogger.git](https://github.com/eMVee-NL/XSS-CookieStealer.git)
+git clone https://github.com/eMVee-NL/XSS-Keylogger.git
 ```
 
 ### Usage
