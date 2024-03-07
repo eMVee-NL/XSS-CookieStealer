@@ -1,5 +1,5 @@
 # XSS-CookieStealer
-A simple XSS Cookie Stealer. The python application stores the creceived cookies and display them on screen.
+A simple XSS Cookie Stealer. The python application stores the received cookies and display them on screen.
 
 
 > [!IMPORTANT]
